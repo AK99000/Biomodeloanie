@@ -1,0 +1,43 @@
+/usr/local/NAMD_2.14_Linux-x86_64-multicore-CUDA/psfgen << ENDMOL
+topology top_all27_prot_na.inp
+
+alias atom ILE CD1 CD
+alias residue HOH TIP3
+alias atom HOH O OH2
+alias residue HIS HSD
+
+segment AAA {
+pdb 7D35_A.pdb
+}
+
+segment BBB {
+pdb 7D35_B.pdb
+}
+
+coordpdb 7D35_A.pdb AAA
+coordpdb 7D35_B.pdb BBB
+
+
+segment SOLA {
+auto none
+pdb 7D35_WA.pdb
+}
+coordpdb 7D35_WA.pdb SOLA
+
+
+segment SOLB {
+auto none
+pdb 7D35_WB.pdb
+}
+
+
+coordpdb 7D35_WA.pdb SOLA
+
+writepsf .psf
+
+guesscoord
+
+writepdb .pdb
+
+ENDMOL
+ 
